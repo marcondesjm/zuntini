@@ -20,11 +20,12 @@
 .brand-panel,.quote-panel{overflow:hidden}.brand-panel img{transition:transform .7s cubic-bezier(.16,1,.3,1)}.brand-panel:hover img{transform:scale(1.04)}
 .panel-mark{display:inline-block;transition:transform .6s}.quote-panel:hover .panel-mark{transform:rotate(90deg)}
 .steps article,.insights article{transition:transform .45s ease,border-color .45s}.steps article:hover,.insights article:hover{transform:translateY(-5px)}
+.steps article.reveal,.insights article.reveal{transition:opacity .85s ease var(--delay,0ms),translate 1s cubic-bezier(.16,1,.3,1) var(--delay,0ms),transform .45s ease,border-color .45s}
 .accordions summary span{transition:transform .35s}.accordions details[open] summary span{transform:rotate(180deg)}
 .motion-cursor{position:fixed;top:0;left:0;z-index:50;pointer-events:none;opacity:0;transition:opacity .2s}
 .motion-cursor span{display:block;width:28px;height:28px;transform:translate(-50%,-50%);border:1px solid #bd9492;border-radius:50%;transition:width .25s,height .25s,background .25s}
 .motion-cursor.is-link span{width:48px;height:48px;background:#bd949222}
-@media(max-width:700px){.hero.has-motion:before{background-position:64% center}.hero.has-motion:after{background:linear-gradient(90deg,rgba(48,10,23,.93),rgba(48,10,23,.62))}.reveal{translate:0 18px}}
+@media(max-width:700px){.hero.has-motion:before{background-position:64% center}.hero.has-motion:after{background:linear-gradient(90deg,rgba(48,10,23,.93),rgba(48,10,23,.62))}.reveal{translate:0 14px}.reveal,.steps article.reveal,.insights article.reveal{transition:opacity .55s ease var(--delay,0ms),translate .7s cubic-bezier(.16,1,.3,1) var(--delay,0ms)}.hero-body h1 .motion-line>span{transition-duration:.8s}}
 @media(hover:none),(pointer:coarse){.motion-cursor{display:none}}
 @media(prefers-reduced-motion:reduce){.motion-progress,.motion-cursor{display:none}.reveal{opacity:1;translate:none;transition:none}.hero.has-motion:before{transform:none}.hero-body h1.motion-heading:not(.is-visible) .motion-line>span{transform:none}.steps article:hover,.insights article:hover,.brand-panel:hover img{transform:none}}
 

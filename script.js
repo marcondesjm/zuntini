@@ -29,8 +29,9 @@ document.querySelector('#copy-message').addEventListener('click',async()=>{try{a
   heading.replaceChildren(fragment);heading.classList.add('motion-heading');
   const selectors=['.hero-body .overline','.hero-body h1','.hero-body>p:not(.overline)','.hero-actions','.hero-values>div','.about-top>div','.about-panels>div','.practice-heading','.accordions details','.approach h2','.steps article','.perspectives h2','.insights article','.contact-grid>div','.contact-grid form'];
   const targets=[...new Set(document.querySelectorAll(selectors.join(',')))];
-  const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-visible');observer.unobserve(e.target)}}),{threshold:.06,rootMargin:'0px 0px -15px 0px'});
-  targets.forEach(el=>{if(el.matches('.steps article,.insights article,.hero-values>div'))el.style.setProperty('--delay',`${[...el.parentElement.children].indexOf(el)*90}ms`);el.classList.add('reveal');observer.observe(el)});
+  const mobile=matchMedia('(max-width: 700px)').matches;
+  const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-visible');observer.unobserve(e.target)}}),{threshold:mobile?0:.06,rootMargin:mobile?'0px 0px 40px 0px':'0px 0px -15px 0px'});
+  targets.forEach(el=>{if(el.matches('.steps article,.insights article,.hero-values>div')){const index=[...el.parentElement.children].indexOf(el);el.style.setProperty('--delay',`${mobile?(index%2)*70:index*90}ms`)}el.classList.add('reveal');observer.observe(el)});
   const show=el=>{if(!el)return;targets.filter(t=>t===el||el.contains(t)||t.contains(el)).forEach(t=>{t.classList.add('is-visible');observer.unobserve(t)})};
   document.addEventListener('focusin',e=>show(e.target),{signal});
   document.addEventListener('click',e=>{const a=e.target.closest('a[href^="#"]');if(a)show(document.getElementById(a.hash.slice(1)))},{signal});
