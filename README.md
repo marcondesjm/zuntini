@@ -1,18 +1,34 @@
-# Zuntini & Albertini — site
+# Zuntini & Albertini — Advogadas Associadas
 
-Site estático criado a partir de Site/Site.pdf e do estudo de branding fornecido. A imagem principal foi extraída da camada fotográfica de Site/Site.psd; a marca veio do SVG original.
+Site institucional desenvolvido a partir da prévia e da identidade visual fornecidas pelo escritório.
 
-Abrir index.html ou executar `python -m http.server 4183` nesta pasta.
+- **Site:** [zuntini.vercel.app](https://zuntini.vercel.app/)
+- **Repositório:** [github.com/marcondesjm/zuntini](https://github.com/marcondesjm/zuntini)
+- **Tecnologias:** HTML, CSS e JavaScript, com fontes Manrope e Syne armazenadas localmente.
 
-O formulário prepara e permite copiar uma mensagem, sem enviar dados. Integrar um canal real após receber os dados oficiais. Nomes, inscrições, endereço, telefone, domínio e redes sociais não foram fornecidos. Confirmar conteúdo e informações profissionais antes da publicação. Os textos de Perspectivas são introdutórios; não há artigos vinculados.
+O site conta com layout responsivo, menu para celular, animações adaptadas à preferência por movimento reduzido e páginas de acessibilidade, privacidade e cookies.
 
-As fontes do estudo são Mumford e Scale VF. Elas não foram fornecidas como arquivos; esta versão usa Georgia e Arial como alternativas locais. Substituir pelas fontes oficiais quando disponibilizadas e licenciadas para web.
+## Executar localmente
 
-Validação local: computador 1440 px e celular 390 px, navegação, menu, áreas expansíveis, preparação da mensagem, imagens e ausência de erros no console. Site não publicado.
+Abra `index.html` no navegador ou execute, nesta pasta:
 
-Animações inspiradas no site de referência: entrada dos textos na abertura e na rolagem, movimento suave da imagem, cursor complementar, botões e detalhes interativos. Efeitos adaptados para toque e preferência por movimento reduzido. Testados localmente no computador e celular; formulário permanece sem envio automático.
+```sh
+python -m http.server 4183
+```
 
+Depois, acesse `http://localhost:4183`.
 
-Tipografia atual por solicitação: Syne nos títulos e Manrope nos textos, conforme o site MV Services. Arquivos locais em assets/fonts; Mumford e Scale VF permanecem pendentes de disponibilização licenciada para web.
+## Pontos pendentes
 
-Preparação local de publicação: ver PUBLICACAO.md para SEO básico, verificações e informações ainda necessárias. As fontes efetivamente aplicadas são Manrope e Syne; Mumford e Scale VF aguardam disponibilização licenciada.
+- Confirmar as informações profissionais e os canais oficiais do escritório.
+- Definir o contato para solicitações de privacidade e revisar as políticas de privacidade e cookies.
+- O formulário prepara uma mensagem para cópia; ele ainda não envia mensagens automaticamente.
+- Quando houver domínio próprio, atualizar as configurações de SEO e compartilhamento. Consulte `PUBLICACAO.md` para a lista de verificações.
+- As fontes Mumford e Scale VF poderão ser aplicadas caso os arquivos e as licenças para uso na web sejam disponibilizados.
+
+## Desenvolvimento
+
+**MJM Digital**
+
+- Instagram: [@marcondes.machado.oficial](https://www.instagram.com/marcondes.machado.oficial/)
+- WhatsApp: [(48) 99602-9392](https://wa.me/5548996029392)
