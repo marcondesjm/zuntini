@@ -10,19 +10,28 @@ O site conta com layout responsivo, menu para celular, animações adaptadas à 
 
 ## Executar localmente
 
-Abra `index.html` no navegador ou execute, nesta pasta:
+Para testar o site e a rota de contato, execute nesta pasta com PHP 8.1 ou superior e a extensão cURL:
 
 ```sh
-python -m http.server 4183
+php -S localhost:4183
 ```
 
 Depois, acesse `http://localhost:4183`.
+
+## Configurar o e-mail do formulário
+
+O formulário usa `POST /api/enviar-contato.php`. O projeto inclui um runtime comunitário de PHP para a Vercel. Adicione estas variáveis de ambiente no projeto e faça um novo deploy:
+
+- `RESEND_API_KEY` — chave de envio do Resend.
+- `CONTACT_FROM_EMAIL` — endereço remetente em um domínio verificado no Resend.
+- `CONTACT_TO_EMAIL` — endereço do escritório que recebe as mensagens.
+
+O endereço preenchido pelo visitante fica no campo de resposta do e-mail. Enquanto o envio estiver indisponível, o formulário oferece a opção de copiar a mensagem.
 
 ## Pontos pendentes
 
 - Confirmar as informações profissionais e os canais oficiais do escritório.
 - Definir o contato para solicitações de privacidade e revisar as políticas de privacidade e cookies.
-- O formulário prepara uma mensagem para cópia; ele ainda não envia mensagens automaticamente.
 - Quando houver domínio próprio, atualizar as configurações de SEO e compartilhamento. Consulte `PUBLICACAO.md` para a lista de verificações.
 - As fontes Mumford e Scale VF poderão ser aplicadas caso os arquivos e as licenças para uso na web sejam disponibilizados.
 

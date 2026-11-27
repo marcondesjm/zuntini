@@ -12,9 +12,61 @@ backToTop.addEventListener('click',()=>{document.querySelector('#conteudo').focu
 let scale=1;const tools=document.querySelector('.access-tools');
 tools.addEventListener('click',e=>{const action=e.target.closest('[data-text-size]')?.dataset.textSize;if(!action)return;scale=action==='reset'?1:Math.max(.9,Math.min(1.3,Math.round((scale+(action==='increase'?.1:-.1))*10)/10));document.documentElement.style.setProperty('--text-scale',scale)});
 const contrast=document.querySelector('#contrast-toggle');contrast.addEventListener('click',()=>{const active=document.documentElement.classList.toggle('high-contrast');contrast.setAttribute('aria-pressed',String(active));contrast.setAttribute('aria-label',active?'Desativar alto contraste':'Ativar alto contraste')});
-const form=document.querySelector('#contact-form'), preview=document.querySelector('#message-preview');
-form.addEventListener('submit',e=>{e.preventDefault();if(!form.reportValidity())return;const d=new FormData(form);preview.textContent=`Nome: ${d.get('nome')}\nE-mail: ${d.get('email')}\nAssunto: ${d.get('assunto')}\n\nMensagem:\n${d.get('mensagem')}`;document.querySelector('#result').hidden=false});
-document.querySelector('#copy-message').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(preview.textContent);document.querySelector('#copy-status').textContent='Mensagem copiada.'}catch{document.querySelector('#copy-status').textContent='Selecione o texto acima para copiar.'}});
+const contactForm = document.querySelector('#contact-form');
+const formStatus = document.querySelector('#form-status');
+const messagePreview = document.querySelector('#message-preview');
+const copyPanel = document.querySelector('#result');
+const copyStatus = document.querySelector('#copy-status');
+const submitButton = contactForm.querySelector('button[type="submit"]');
+
+contactForm.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  if (submitButton.disabled || !contactForm.reportValidity()) return;
+
+  const fields = new FormData(contactForm);
+  copyPanel.hidden = true;
+  copyStatus.textContent = '';
+  formStatus.textContent = 'Enviando mensagem…';
+  submitButton.disabled = true;
+
+  try {
+    const response = await fetch(contactForm.action, {
+      method: 'POST',
+      headers: { Accept: 'application/json' },
+      body: new URLSearchParams(fields),
+    });
+    const result = await response.json();
+    if (typeof result.message !== 'string') throw new Error('Resposta inválida');
+    formStatus.textContent = result.message;
+    if (response.ok) {
+      contactForm.reset();
+      return;
+    }
+  } catch {
+    formStatus.textContent = 'Não foi possível enviar a mensagem. Você pode tentar novamente ou copiar o texto abaixo.';
+  } finally {
+    submitButton.disabled = false;
+  }
+
+  messagePreview.textContent = [
+    'Nome: ' + fields.get('nome'),
+    'E-mail: ' + fields.get('email'),
+    'Assunto: ' + fields.get('assunto'),
+    '',
+    'Mensagem:',
+    fields.get('mensagem'),
+  ].join('\n');
+  copyPanel.hidden = false;
+});
+
+document.querySelector('#copy-message').addEventListener('click', async () => {
+  try {
+    await navigator.clipboard.writeText(messagePreview.textContent);
+    copyStatus.textContent = 'Mensagem copiada.';
+  } catch {
+    copyStatus.textContent = 'Selecione o texto acima para copiar.';
+  }
+});
 
 // Movimento discreto e acessível, sem bibliotecas externas.
 (() => {
